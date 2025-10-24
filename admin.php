@@ -1,9 +1,8 @@
 <?php
 // --- Configuration ---
-$ADMIN_PASSWORD = "change-me-please"; // ⚠️ À changer après déploiement
+$ADMIN_PASSWORD = "laurie123"; // ⚠️ À changer après déploiement
 $UPLOAD_DIR = __DIR__ . "/uploads";
 $META_FILE = $UPLOAD_DIR . "/metadata.json";
-
 session_start();
 $authed = isset($_SESSION['authed']) && $_SESSION['authed'] === true;
 
@@ -111,6 +110,22 @@ if (!file_exists($META_FILE)) file_put_contents($META_FILE, "[]");
       }
       ?>
     </div>
+  </div>
+    <div class="card">
+    <h3>Modifier la page “À propos”</h3>
+    <form action="update_about.php" method="post" enctype="multipart/form-data" class="row">
+      <div style="flex:1;">
+        <label>Texte de présentation</label><br/>
+        <textarea name="texte" rows="6" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;"></textarea>
+      </div>
+      <div>
+        <label>Photo de profil (facultatif)</label><br/>
+        <input type="file" name="photo" accept="image/*" />
+      </div>
+      <div style="align-self:end;">
+        <button type="submit">Enregistrer</button>
+      </div>
+    </form>
   </div>
 </body>
 </html>

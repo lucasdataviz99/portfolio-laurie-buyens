@@ -1,23 +1,30 @@
-/* Base */
+/* ===========================
+   STYLES PRINCIPAUX – Laurie Buyens Portfolio
+   =========================== */
+
+/* Palette et variables */
 :root{
   --bg:#ffffff;
   --fg:#0e0e0e;
   --muted:#949494;
   --glass-bg:rgba(255,255,255,0.55);
   --glass-border:rgba(255,255,255,0.6);
-  --accent: #0e0e0e;
+  --accent:#0e0e0e;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
 body{
   margin:0;
   background:var(--bg);
   color:var(--fg);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   line-height:1.4;
 }
 
-/* Header */
+/* ===========================
+   HEADER
+   =========================== */
 .site-header{
   position:sticky; top:0; z-index:50;
   display:flex; gap:1rem; align-items:center; justify-content:space-between;
@@ -36,7 +43,9 @@ body{
   display:flex; gap:8px; align-items:center; flex-wrap:wrap;
 }
 
-/* Glassmorphism buttons */
+/* ===========================
+   BOUTONS GLASSMORPHISM
+   =========================== */
 .glass{
   background:var(--glass-bg);
   border:1px solid var(--glass-border);
@@ -52,47 +61,85 @@ body{
   font-weight:500;
   transition:transform .08s ease, box-shadow .2s ease, background .2s ease;
 }
-.filter-btn:hover, #shuffleBtn:hover{ transform:translateY(-1px) }
-.filter-btn.active{ background:#000; color:#fff }
-#shuffleBtn{ font-size:18px; line-height:1; padding:8px 10px }
+.filter-btn:hover, #shuffleBtn:hover{ transform:translateY(-1px); }
+.filter-btn.active{ background:#000; color:#fff; }
+#shuffleBtn{ font-size:18px; line-height:1; padding:8px 10px; }
 
-/* Gallery */
+/* ===========================
+   GALERIE
+   =========================== */
 .gallery{
   width:100%;
   padding: clamp(10px, 2vw, 18px);
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: clamp(6px, 1vw, 14px);
+  /* plus grandes vignettes en format vertical */
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: clamp(10px, 1.5vw, 20px);
 }
 .gallery figure{
-  position:relative; margin:0; overflow:hidden; border-radius:14px;
+  position:relative;
+  margin:0;
+  overflow:hidden;
+  border-radius:18px;
   background:#f2f2f2;
-  aspect-ratio: 4 / 3;
+  /* format vertical 2:3 */
+  aspect-ratio: 2 / 3;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.gallery figure:hover{
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 .gallery img{
   width:100%; height:100%;
   object-fit:cover; display:block;
   transition: transform .35s ease;
+  object-position:center top;
 }
-.gallery figure:hover img{ transform: scale(1.03) }
-.figure-tag{
-  position:absolute; left:8px; top:8px;
-  font-size:12px; padding:4px 8px; border-radius:999px;
-  background:rgba(255,255,255,0.75); backdrop-filter: blur(10px);
-  border:1px solid rgba(255,255,255,0.65);
+.gallery figure:hover img{ transform: scale(1.03); }
+
+/* ===========================
+   TAGS (catégories)
+   =========================== */
+.figure-tag {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: #111;
+  font-weight: 500;
+  opacity: 0; /* invisible par défaut */
+  transform: translateY(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+/* Affichage du tag au survol */
+.gallery figure:hover .figure-tag {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Sentinel for infinite scroll */
-.sentinel{ height:1px }
+/* ===========================
+   SCROLL INFINI
+   =========================== */
+.sentinel{ height:1px; }
 
-/* Lightbox */
+/* ===========================
+   LIGHTBOX (plein écran)
+   =========================== */
 .lightbox{
   position:fixed; inset:0; z-index:100;
   display:none; align-items:center; justify-content:center;
   background:rgba(0,0,0,0.9);
 }
-.lightbox.open{ display:flex }
-.lightbox img{ max-width:92vw; max-height:90vh; object-fit:contain }
+.lightbox.open{ display:flex; }
+.lightbox img{
+  max-width:92vw; max-height:90vh; object-fit:contain;
+}
 .lightbox-close{
   position:absolute; top:14px; right:16px; font-size:32px;
   width:44px; height:44px; border-radius:12px; border:0; cursor:pointer;
@@ -103,11 +150,81 @@ body{
   font-size:42px; width:54px; height:54px; border-radius:14px;
   border:0; cursor:pointer; background:rgba(255,255,255,0.85);
 }
-.lightbox-nav.prev{ left:14px }
-.lightbox-nav.next{ right:14px }
+.lightbox-nav.prev{ left:14px; }
+.lightbox-nav.next{ right:14px; }
 
-/* Small screens */
+/* ===========================
+   PETITS ÉCRANS
+   =========================== */
 @media (max-width:520px){
-  .brand{ font-size:14px }
-  .filter-btn{ padding:6px 10px }
+  .brand{ font-size:14px; }
+  .filter-btn{ padding:6px 10px; }
+  .gallery{
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+  }
+}
+/* ===========================
+   Indication subtile sous le titre
+   =========================== */
+.brand-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-hint {
+  font-size: 0.85rem;
+  color: rgba(0,0,0,0.55);
+  margin-top: 2px;
+  opacity: 0;
+  transform: translateY(-3px);
+  animation:
+    hintFadeIn 1.5s ease 1.5s forwards,   /* apparition subtile */
+    hintPulse 2.2s ease-in-out 3s 2,      /* 2 cycles de pulsation */
+    hintFadeOut 1s ease 8s forwards;      /* disparition au bout d’environ 8s */
+}
+
+/* Apparition fluide */
+@keyframes hintFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Légère pulsation pour attirer l’œil */
+@keyframes hintPulse {
+  0%,100% { opacity: 0.8; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+
+/* Disparition progressive */
+@keyframes hintFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-3px);
+  }
+}
+/* ===========================
+   Boutons retour & réseaux sociaux (about)
+   =========================== */
+.filters a.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #000;
+  transition: all 0.2s ease;
+}
+.filters a.filter-btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  transform: translateY(-1px);
 }
