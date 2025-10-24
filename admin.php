@@ -22,27 +22,199 @@ if (!$authed):
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin – Connexion</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Administration – Laurie Buyens</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    body{display:grid;place-items:center;height:100vh}
-    form{padding:24px;border-radius:16px;border:1px solid #e5e5e5;max-width:360px;width:92%}
-    input,button{width:100%;padding:10px 12px;margin-top:10px;border-radius:10px;border:1px solid #ddd}
-    button{border:0;background:#111;color:#fff;cursor:pointer}
-    .error{color:#c00;margin-top:10px}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: linear-gradient(145deg, #f8f8f8, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      text-align: center;
+      padding: 20px 0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1000px;
+      padding: 40px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(15px) saturate(1.3);
+      border-radius: 18px;
+      padding: 30px 28px;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
+
+    h2, h3 {
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #111;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input[type="file"], input[type="text"], select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.85);
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input[type="file"]:focus, input[type="text"]:focus, textarea:focus, select:focus {
+      border-color: #111;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+      outline: none;
+    }
+
+    button {
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    button:hover {
+      background: #000;
+      transform: translateY(-1px);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .row > div {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .logout {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .logout a {
+      text-decoration: none;
+      color: #666;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .logout a:hover {
+      color: #000;
+    }
+
+    /* ✅ Responsive */
+    @media (max-width: 600px) {
+      main {
+        padding: 20px 14px 60px;
+      }
+      .card {
+        padding: 22px 20px;
+      }
+      button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <form method="post">
-    <h2>Admin – Connexion</h2>
-    <input type="password" name="password" placeholder="Mot de passe" required />
-    <input type="hidden" name="action" value="login" />
-    <button type="submit">Se connecter</button>
-    <?php if(isset($error)) { echo "<div class='error'>".$error."</div>"; } ?>
-  </form>
+  <header>
+    Panneau d’administration – Laurie Buyens
+  </header>
+
+  <main>
+    <div class="card">
+      <h3>Charger de nouvelles photos</h3>
+      <form action="upload.php" method="post" enctype="multipart/form-data" class="row">
+        <div>
+          <label>Fichiers</label>
+          <input type="file" name="photos[]" multiple required>
+        </div>
+        <div>
+          <label>Catégorie</label>
+          <select name="categorie" required>
+            <option value="">Choisir une catégorie</option>
+            <option value="Soirée">Soirée</option>
+            <option value="Bijoux">Bijoux</option>
+            <option value="Nourriture">Nourriture</option>
+            <option value="Mariage">Mariage</option>
+          </select>
+        </div>
+        <div style="align-self: end;">
+          <button type="submit">Uploader</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Modifier la page “À propos”</h3>
+      <form action="update_about.php" method="post" enctype="multipart/form-data" class="row">
+        <div style="flex:1;">
+          <label>Texte de présentation</label>
+          <textarea name="texte" rows="6" placeholder="Votre description..."></textarea>
+        </div>
+        <div>
+          <label>Photo de profil</label>
+          <input type="file" name="photo" accept="image/*">
+        </div>
+        <div style="align-self:end;">
+          <button type="submit">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="logout">
+      <a href="logout.php">Se déconnecter</a>
+    </div>
+  </main>
 </body>
+<script>
+  // Message de confirmation visuel
+  if (window.location.search.includes("success")) {
+    alert("Les changements ont été enregistrés avec succès !");
+  }
+</script>
 </html>
 <?php
 exit; endif;

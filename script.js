@@ -138,3 +138,19 @@ document.addEventListener('keydown', (e) => {
 });
 
 init();
+// ======== POP-UP CALL TO ACTION ========
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('ctaPopup');
+  const closeBtn = document.querySelector('.cta-close');
+
+  // Affiche le pop-up après 6 secondes
+  setTimeout(() => {
+    popup.classList.add('show');
+  }, 6000);
+
+  // Ferme le pop-up quand on clique sur la croix ou à l’extérieur
+  closeBtn.addEventListener('click', () => popup.classList.remove('show'));
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) popup.classList.remove('show');
+  });
+});

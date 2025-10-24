@@ -64,6 +64,37 @@
       cursor: pointer;
       margin-top: 10px;
     }
+    @media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-photo {
+    width: 200px;
+    height: 200px;
+  }
+  .about-text {
+    max-width: 600px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 40px 14px;
+  }
+  .about-photo {
+    width: 160px;
+    height: 160px;
+  }
+  .about-text {
+    font-size: 0.95rem;
+  }
+  form button {
+    width: 100%;
+  }
+}
+
   </style>
 </head>
 <body>
