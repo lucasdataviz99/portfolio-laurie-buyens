@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laurie Buyens - Photographie</title>
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Laurie Buyens – Photographie</div>
+    <nav class="filters glass">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="Soirée">Soirée</button>
+      <button class="filter-btn" data-filter="Bijoux">Bijoux</button>
+      <button class="filter-btn" data-filter="Nourriture">Nourriture</button>
+      <button class="filter-btn" data-filter="Mariage">Mariage</button>
+      <button id="shuffleBtn" title="Mélanger l'ordre">⟲</button>
+    </nav>
+  </header>
+
+  <main id="gallery" class="gallery"></main>
+  <div id="sentinel" class="sentinel" aria-hidden="true"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lbClose" aria-label="Fermer">×</button>
+    <button class="lightbox-nav prev" id="lbPrev" aria-label="Précédent">‹</button>
+    <img id="lightboxImg" alt="" />
+    <button class="lightbox-nav next" id="lbNext" aria-label="Suivant">›</button>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

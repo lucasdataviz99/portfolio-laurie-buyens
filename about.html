@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>À propos – Laurie Buyens</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .container{max-width:920px;margin:0 auto;padding:clamp(16px,3vw,28px)}
+    .hero{display:grid;grid-template-columns:1fr;gap:24px;margin-top:10px}
+    .card{border:1px solid #eee;border-radius:16px;padding:18px}
+    form input, form textarea{width:100%;padding:10px 12px;margin-top:10px;border-radius:10px;border:1px solid #ddd}
+    form button{padding:10px 14px;border-radius:12px;border:0;background:#111;color:#fff;cursor:pointer}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Laurie Buyens – Photographie</div>
+    <nav class="filters glass">
+      <a class="filter-btn" href="index.html">Galerie</a>
+      <a class="filter-btn" href="about.html">Présentation & Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <h1>À propos</h1>
+        <p>Photographe indépendante, je capture les instants forts. Minimaliste dans la forme, exigeante sur la lumière.</p>
+      </div>
+      <div class="card">
+        <h2>Contact</h2>
+        <p>Pour une collaboration ou un devis, écrivez-moi :</p>
+        <form action="mailto:contact@example.com" method="post" enctype="text/plain">
+          <input type="text" name="nom" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Votre email" required>
+          <textarea name="message" rows="6" placeholder="Votre message" required></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+        <p style="color:#666;font-size:13px;margin-top:8px">Remplacez <code>contact@example.com</code> par votre adresse.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
